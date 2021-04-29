@@ -10,6 +10,8 @@ import { api } from "../../services/api";
 import { convertDuration } from "../../utils/date";
 
 import styles from "./episode.module.scss";
+import { usePlayer } from "../../contexts/PlayerContext";
+import { useState } from "react";
 
 type Episode = {
   id: string;
@@ -28,6 +30,9 @@ type EpisodeProps = {
 };
 
 export default function Episode({ episode }: EpisodeProps) {
+  const { isPlaying, play, tooglePlay } = usePlayer();
+  const [alreadyPlay, setAlreadyPlay] = useState(false);
+
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>
@@ -42,8 +47,22 @@ export default function Episode({ episode }: EpisodeProps) {
           src={episode.thumbnail}
           objectFit="cover"
         />
-        <button type="button">
-          <img src="/play.svg" alt="Tocar episódio" />
+        <button
+          type="button"
+          onClick={() => {
+            if (alreadyPlay && isPlaying) {
+              tooglePlay();
+            } else {
+              play(episode);
+              setAlreadyPlay(true);
+            }
+          }}
+        >
+          {alreadyPlay && isPlaying ? (
+            <img src="/pause.svg" alt="Pausar episódio" />
+          ) : (
+            <img src="/play.svg" alt="Tocar episódio" />
+          )}
         </button>
       </div>
 

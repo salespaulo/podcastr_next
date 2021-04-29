@@ -1,7 +1,7 @@
 .container {
   padding: 3rem 4rem;
-  height: 100vh;
-  width: var(--player-width);
+  height: 100hv;
+  width: 26.5rem;
   background: var(--purple-500);
   color: var(--white);
   display: flex;
@@ -23,7 +23,7 @@
   footer {
     align-self: stretch;
 
-    &.empty {
+    &.empty .progress {
       opacity: 0.5;
     }
   }
@@ -110,10 +110,20 @@
 
     &:disabled {
       cursor: default;
+      opacity: 0.5;
     }
 
-    &:disabled:not(:disabled) {
+    &:hover:not(:disabled) {
       filter: brightness(0.7);
+    }
+
+    &.isActive {
+      filter: invert(0.35) sepia(1) saturate(3) hue-rotate(100deg);
+    }
+
+    &.isActive:hover {
+      filter: brightness(0.6) invert(0.35) sepia(1) saturate(3)
+        hue-rotate(100deg);
     }
 
     &.playButton {
@@ -122,7 +132,7 @@
       border-radius: 1rem;
       background: var(--purple-400);
 
-      &:disabled:not(:disabled) {
+      &:hover:not(:disabled) {
         filter: brightness(0.95);
       }
     }

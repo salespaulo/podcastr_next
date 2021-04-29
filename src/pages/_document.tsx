@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
             name="description"
             content="O melhor do podcast aqui, Podcastr!"
           />
+          <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         </Head>
         <body>
           <Main />
